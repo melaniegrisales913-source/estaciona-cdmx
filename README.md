@@ -1,120 +1,191 @@
 # Estaciona CDMX
 
-Aplicación web para buscar estacionamientos en la Ciudad de México por nombre, zona, precio y disponibilidad.
+Aplicación web interactiva para buscar estacionamientos en la Ciudad de México por nombre, zona, precio y disponibilidad.
 
-## Problema
+## 1. Problema
 
-Encontrar estacionamiento en la Ciudad de México puede tomar tiempo debido a la alta demanda y a la falta de información centralizada. Esta aplicación organiza datos básicos de diferentes estacionamientos para que el usuario pueda comparar opciones rápidamente.
+Encontrar estacionamiento en la Ciudad de México puede tomar tiempo debido a la alta demanda y a la falta de información centralizada. Esto provoca que los conductores recorran varias calles antes de encontrar una opción adecuada.
 
-## Objetivo
+La aplicación concentra información básica de distintos estacionamientos para que el usuario pueda comparar opciones de forma rápida.
+
+## 2. Objetivo
+
+Desarrollar una aplicación web funcional que permita:
 
 - Buscar estacionamientos por nombre o zona.
-- Filtrar por zona, disponibilidad y precio máximo.
-- Consultar KPIs dinámicos.
-- Visualizar resultados en computadora y celular.
+- Filtrar por zona.
+- Filtrar por disponibilidad.
+- Filtrar por precio máximo.
+- Ordenar los resultados.
+- Consultar indicadores dinámicos.
+- Visualizar la aplicación correctamente en computadora y celular.
 
-## Stack tecnológico
+## 3. Funciones principales
+
+- Búsqueda en tiempo real.
+- Filtro por zona.
+- Filtro por disponibilidad.
+- Filtro por precio máximo.
+- Ordenamiento por precio o espacios disponibles.
+- KPIs dinámicos.
+- Mensaje cuando no hay resultados.
+- Manejo de errores inesperados.
+- Diseño responsivo.
+- Botón para limpiar filtros.
+
+## 4. Stack tecnológico
 
 ### HTML
-Construye la estructura de la interfaz, los filtros, los indicadores y las tarjetas.
+
+HTML construye la estructura semántica de la aplicación. Organiza el encabezado, los filtros, los KPIs, las tarjetas de resultados y los estados alternativos.
 
 ### CSS
-Define el diseño visual y responsivo de la aplicación.
+
+CSS define el diseño visual, la jerarquía de información y la adaptación a distintos tamaños de pantalla mediante media queries.
 
 ### JavaScript
-Implementa la carga de datos, búsqueda, filtros, validaciones, KPIs y actualización dinámica de la interfaz.
 
-### Git y GitHub
-Git controla las versiones. GitHub almacena el repositorio público y conserva el historial de cambios.
+JavaScript implementa la lógica principal:
+
+- Carga de datos.
+- Normalización de texto.
+- Búsqueda.
+- Filtros.
+- Ordenamiento.
+- Cálculo de KPIs.
+- Creación dinámica de tarjetas.
+- Manejo de eventos.
+- Control de casos borde.
+
+### Git
+
+Git se utiliza como sistema de control de versiones. Permite registrar cambios, comparar versiones y recuperar estados anteriores.
+
+### GitHub
+
+GitHub almacena el repositorio público y documenta el proceso de desarrollo mediante commits.
 
 ### Vercel
-Publica la aplicación desde GitHub y genera un enlace público. Los nuevos cambios pueden desplegarse automáticamente.
+
+Vercel despliega la aplicación desde GitHub y genera un dominio público. Cada cambio enviado a la rama principal puede actualizar el sitio automáticamente.
 
 ### Inteligencia artificial como copiloto
-La IA apoyó la estructura inicial del código, la lógica de filtros, el diseño responsivo y la documentación. Las decisiones finales se revisaron y adaptaron al alcance del proyecto.
 
-## Estructura
+La IA se utilizó para apoyar la estructura inicial, revisar la lógica de filtrado, proponer mejoras visuales y documentar el proyecto. El código final fue revisado y adaptado según el alcance del proyecto.
+
+## 5. Estructura del proyecto
 
 ```text
-parking_app_cdmx/
+Estaciona_CDMX_Perfecto/
 ├── index.html
 ├── styles.css
 ├── script.js
 └── README.md
 ```
 
-## Lógica algorítmica
+## 6. Lógica algorítmica
 
 ```text
 INICIO
-Cargar datos.
+
+Cargar los datos de estacionamientos.
+
 SI ocurre un error:
     Mostrar mensaje de error.
-SI cargan correctamente:
+SI los datos cargan correctamente:
     Mostrar todos los estacionamientos.
-Leer búsqueda y filtros.
+
+Leer:
+    búsqueda
+    zona
+    disponibilidad
+    precio máximo
+    criterio de ordenamiento
+
 PARA cada estacionamiento:
-    Verificar nombre o zona.
-    Verificar disponibilidad.
-    Verificar precio máximo.
-SI no hay resultados:
-    Mostrar mensaje.
-SI hay resultados:
-    Mostrar tarjetas.
-    Calcular total, disponibles y precio promedio.
-    Actualizar KPIs.
+    Verificar coincidencia con la búsqueda.
+    Verificar coincidencia con la zona.
+    Verificar coincidencia con la disponibilidad.
+    Verificar que el precio sea menor o igual al máximo.
+
+Guardar los estacionamientos que cumplen todas las condiciones.
+
+Ordenar los resultados.
+
+SI no existen resultados:
+    Mostrar mensaje de lista vacía.
+    Colocar los KPIs en cero.
+
+SI existen resultados:
+    Crear una tarjeta por estacionamiento.
+    Calcular total de resultados.
+    Calcular opciones disponibles.
+    Calcular precio promedio.
+    Calcular total de espacios libres.
+    Actualizar los KPIs.
+
 FIN
 ```
 
-## Casos alternativos y casos borde
+## 7. Casos alternativos y casos borde
 
 - Búsqueda vacía: se muestran todos los estacionamientos.
-- Sin coincidencias: aparece un mensaje claro.
-- Precio máximo vacío: no se aplica filtro de precio.
-- Acentos: la búsqueda normaliza el texto.
-- Error inesperado: se muestra un estado de error.
-- Cero resultados: los KPIs cambian a cero.
+- Texto con acentos: la búsqueda normaliza los caracteres.
+- Precio máximo vacío: no se aplica el filtro de precio.
+- Precio máximo inválido: el sistema evita fallos.
+- Cero resultados: aparece un mensaje y los KPIs se actualizan en cero.
+- Error inesperado: aparece un estado de error.
+- Cambio de filtros: los resultados se actualizan sin recargar la página.
+- Pantalla pequeña: la interfaz reorganiza los elementos.
 
-## Prompts principales utilizados con IA
+## 8. Prompts principales utilizados con IA
 
-1. “Crea una aplicación web sencilla para encontrar estacionamientos en CDMX usando HTML, CSS y JavaScript.”
-2. “Agrega búsqueda por nombre y zona, filtros de disponibilidad y precio máximo.”
-3. “Incluye KPIs de total de resultados, disponibles y precio promedio.”
-4. “Agrega validaciones para búsquedas vacías, cero resultados y errores.”
-5. “Haz el diseño responsivo para celular y computadora.”
-6. “Genera un README que explique el stack, la lógica, los prompts y la autoevaluación.”
+1. “Crea una aplicación web para encontrar estacionamientos en CDMX con HTML, CSS y JavaScript.”
+2. “Agrega búsqueda por nombre y zona.”
+3. “Agrega filtros por disponibilidad y precio máximo.”
+4. “Incluye KPIs dinámicos para total, disponibilidad, precio promedio y espacios libres.”
+5. “Agrega ordenamiento por precio y espacios disponibles.”
+6. “Incluye casos alternativos como búsquedas vacías, cero resultados y errores.”
+7. “Haz el diseño responsivo para computadora y celular.”
+8. “Genera un README con stack, lógica, prompts y autoevaluación.”
 
-## Cómo ejecutar
+## 9. Cómo ejecutar el proyecto
 
 1. Descargar o clonar el repositorio.
-2. Abrir la carpeta.
-3. Abrir `index.html` en el navegador.
+2. Abrir la carpeta del proyecto.
+3. Abrir `index.html` en un navegador.
 
-No requiere instalar paquetes.
+No requiere instalación de paquetes ni dependencias externas.
 
-## Despliegue en Vercel
+## 10. Despliegue en Vercel
 
-1. Crear una cuenta en GitHub.
-2. Crear un repositorio público.
-3. Subir los cuatro archivos.
-4. Entrar a Vercel con GitHub.
-5. Seleccionar **Add New Project**.
-6. Importar el repositorio.
-7. Presionar **Deploy**.
-8. Copiar el enlace público.
+1. Crear un repositorio público en GitHub.
+2. Subir `index.html`, `styles.css`, `script.js` y `README.md`.
+3. Entrar a Vercel.
+4. Iniciar sesión con GitHub.
+5. Importar el repositorio.
+6. Presionar `Deploy`.
+7. Copiar el dominio público.
 
-## Autoevaluación
+## 11. Autoevaluación
 
-El proyecto transforma la planeación en una aplicación funcional. La lógica está dividida en pasos claros y contempla búsquedas vacías, filtros sin resultados y errores inesperados.
+Considero que el proyecto cumple con el objetivo porque transforma la planeación inicial en una aplicación funcional e interactiva.
 
-La aplicación utiliza estructuras de control, arreglos, funciones, eventos, filtrado de datos y actualización dinámica. Como mejora futura, podría conectarse a una base de datos real, mapas, geolocalización y reservaciones.
+La lógica está dividida en funciones específicas para cargar zonas, normalizar texto, filtrar, ordenar, calcular KPIs, crear tarjetas y actualizar la interfaz. También se contemplan casos borde como búsquedas vacías, ausencia de resultados y errores inesperados.
 
-## Criterios alcanzados
+La aplicación demuestra pensamiento algorítmico porque el problema fue descompuesto en pasos concretos, secuenciales y ejecutables por una máquina.
+
+Como mejora futura, el proyecto podría conectarse a una base de datos real, integrar mapas, geolocalización, reservaciones y disponibilidad en tiempo real.
+
+## 12. Criterios de éxito alcanzados
 
 - Aplicación interactiva.
-- Búsqueda y filtros funcionales.
+- Búsqueda funcional.
+- Filtros funcionales.
+- Ordenamiento funcional.
 - KPIs dinámicos.
 - Diseño responsivo.
+- Manejo de casos alternativos.
 - Código separado por archivos.
 - README técnico.
 - Proyecto listo para GitHub y Vercel.

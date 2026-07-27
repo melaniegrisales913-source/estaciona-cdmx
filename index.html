@@ -1,61 +1,134 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aplicación web para buscar estacionamientos en la Ciudad de México." />
   <title>Estaciona CDMX</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="hero">
-    <div class="container">
-      <p class="eyebrow">Encuentra lugar sin dar mil vueltas</p>
-      <h1>Estaciona CDMX</h1>
-      <p class="subtitle">Busca estacionamientos por nombre, zona, precio y disponibilidad.</p>
+    <div class="container hero-content">
+      <div>
+        <p class="eyebrow">Muévete mejor por la ciudad</p>
+        <h1>Estaciona CDMX</h1>
+        <p class="hero-text">
+          Encuentra estacionamientos por nombre, zona, precio y disponibilidad
+          sin dar vueltas de más.
+        </p>
+      </div>
+      <div class="hero-badge">Proyecto final</div>
     </div>
   </header>
 
   <main class="container">
-    <section class="panel">
-      <div class="field">
-        <label for="search">Buscar</label>
-        <input id="search" type="text" placeholder="Ej. Polanco, Reforma...">
+    <section class="search-panel" aria-label="Filtros de búsqueda">
+      <div class="field field-wide">
+        <label for="search">Buscar por nombre o zona</label>
+        <input id="search" type="search" placeholder="Ej. Polanco, Reforma, Santa Fe..." />
       </div>
+
       <div class="field">
         <label for="zone">Zona</label>
-        <select id="zone"><option value="all">Todas</option></select>
+        <select id="zone">
+          <option value="all">Todas las zonas</option>
+        </select>
       </div>
+
       <div class="field">
         <label for="availability">Disponibilidad</label>
         <select id="availability">
-          <option value="all">Todas</option>
+          <option value="all">Todos</option>
           <option value="available">Disponibles</option>
-          <option value="full">Llenos</option>
+          <option value="full">Sin lugares</option>
         </select>
       </div>
+
       <div class="field">
         <label for="maxPrice">Precio máximo por hora</label>
-        <input id="maxPrice" type="number" min="0" placeholder="Ej. 50">
+        <input id="maxPrice" type="number" min="0" step="1" placeholder="Ej. 50" />
       </div>
-      <button id="clearFilters" class="secondary-button">Limpiar filtros</button>
+
+      <div class="field">
+        <label for="sort">Ordenar por</label>
+        <select id="sort">
+          <option value="recommended">Recomendados</option>
+          <option value="price-asc">Precio: menor a mayor</option>
+          <option value="price-desc">Precio: mayor a menor</option>
+          <option value="spaces-desc">Más espacios disponibles</option>
+        </select>
+      </div>
+
+      <button id="clearFilters" class="button button-secondary" type="button">
+        Limpiar filtros
+      </button>
     </section>
 
-    <section class="kpis">
-      <article class="kpi-card"><span>Total encontrados</span><strong id="totalKpi">0</strong></article>
-      <article class="kpi-card"><span>Disponibles</span><strong id="availableKpi">0</strong></article>
-      <article class="kpi-card"><span>Precio promedio</span><strong id="averagePriceKpi">$0</strong></article>
+    <section class="kpis" aria-label="Indicadores principales">
+      <article class="kpi-card">
+        <span>Total encontrados</span>
+        <strong id="totalKpi">0</strong>
+        <small>Estacionamientos que coinciden</small>
+      </article>
+
+      <article class="kpi-card">
+        <span>Con disponibilidad</span>
+        <strong id="availableKpi">0</strong>
+        <small>Opciones con lugares libres</small>
+      </article>
+
+      <article class="kpi-card">
+        <span>Precio promedio</span>
+        <strong id="averagePriceKpi">$0</strong>
+        <small>Promedio por hora</small>
+      </article>
+
+      <article class="kpi-card">
+        <span>Espacios libres</span>
+        <strong id="spacesKpi">0</strong>
+        <small>Total dentro de los resultados</small>
+      </article>
     </section>
 
-    <section class="results-header">
-      <div><h2>Estacionamientos</h2><p id="resultsText">Cargando resultados...</p></div>
+    <section class="results-toolbar">
+      <div>
+        <h2>Estacionamientos disponibles</h2>
+        <p id="resultsText">Cargando resultados...</p>
+      </div>
+      <span id="activeFilters" class="active-filters"></span>
     </section>
 
     <section id="parkingList" class="parking-grid" aria-live="polite"></section>
-    <section id="emptyState" class="empty-state hidden"><h3>No se encontraron estacionamientos</h3><p>Prueba cambiando los filtros o escribiendo otra zona.</p></section>
-    <section id="errorState" class="empty-state hidden"><h3>No fue posible cargar los datos</h3><p>Recarga la página e inténtalo nuevamente.</p></section>
+
+    <section id="emptyState" class="state-card hidden">
+      <div class="state-icon">⌕</div>
+      <h3>No encontramos coincidencias</h3>
+      <p>Prueba con otra zona, un precio mayor o elimina alguno de los filtros.</p>
+    </section>
+
+    <section id="errorState" class="state-card hidden">
+      <div class="state-icon">!</div>
+      <h3>No fue posible cargar los datos</h3>
+      <p>Recarga la página e inténtalo nuevamente.</p>
+    </section>
+
+    <section class="about-panel">
+      <div>
+        <p class="eyebrow dark">Sobre el proyecto</p>
+        <h2>Una solución simple para un problema cotidiano</h2>
+      </div>
+      <p>
+        Esta aplicación demuestra búsqueda, filtros, estructuras condicionales,
+        actualización dinámica de datos, manejo de casos borde y diseño responsivo.
+      </p>
+    </section>
   </main>
 
-  <footer><p>Proyecto final · Aplicación web de estacionamientos en CDMX</p></footer>
+  <footer>
+    <p>Estaciona CDMX · Proyecto final de Algorithmic Strategies</p>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
