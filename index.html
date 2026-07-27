@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estaciona CDMX</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <p class="eyebrow">Encuentra lugar sin dar mil vueltas</p>
+      <h1>Estaciona CDMX</h1>
+      <p class="subtitle">Busca estacionamientos por nombre, zona, precio y disponibilidad.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <div class="field">
+        <label for="search">Buscar</label>
+        <input id="search" type="text" placeholder="Ej. Polanco, Reforma...">
+      </div>
+      <div class="field">
+        <label for="zone">Zona</label>
+        <select id="zone"><option value="all">Todas</option></select>
+      </div>
+      <div class="field">
+        <label for="availability">Disponibilidad</label>
+        <select id="availability">
+          <option value="all">Todas</option>
+          <option value="available">Disponibles</option>
+          <option value="full">Llenos</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="maxPrice">Precio máximo por hora</label>
+        <input id="maxPrice" type="number" min="0" placeholder="Ej. 50">
+      </div>
+      <button id="clearFilters" class="secondary-button">Limpiar filtros</button>
+    </section>
+
+    <section class="kpis">
+      <article class="kpi-card"><span>Total encontrados</span><strong id="totalKpi">0</strong></article>
+      <article class="kpi-card"><span>Disponibles</span><strong id="availableKpi">0</strong></article>
+      <article class="kpi-card"><span>Precio promedio</span><strong id="averagePriceKpi">$0</strong></article>
+    </section>
+
+    <section class="results-header">
+      <div><h2>Estacionamientos</h2><p id="resultsText">Cargando resultados...</p></div>
+    </section>
+
+    <section id="parkingList" class="parking-grid" aria-live="polite"></section>
+    <section id="emptyState" class="empty-state hidden"><h3>No se encontraron estacionamientos</h3><p>Prueba cambiando los filtros o escribiendo otra zona.</p></section>
+    <section id="errorState" class="empty-state hidden"><h3>No fue posible cargar los datos</h3><p>Recarga la página e inténtalo nuevamente.</p></section>
+  </main>
+
+  <footer><p>Proyecto final · Aplicación web de estacionamientos en CDMX</p></footer>
+  <script src="script.js"></script>
+</body>
+</html>
